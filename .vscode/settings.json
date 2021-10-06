@@ -1,0 +1,13 @@
+{
+    "editor.rulers": [120],
+    "files.trimTrailingWhitespace": true,
+    "editor.tokenColorCustomizations": {
+        "comments": "#808080",
+        "textMateRules": [{
+            "scope": ["variable.other.readwrite"],
+            "settings": {
+                "foreground": "#cecece"
+            }
+        }]
+    }
+}
