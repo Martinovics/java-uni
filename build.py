@@ -6,6 +6,7 @@ from typing_extensions import runtime
 
 project_path = os.getcwd()
 project_name = os.path.split(project_path)[-1]
+project_name = 'lab06'
 
 commands = []
 
