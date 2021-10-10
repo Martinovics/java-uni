@@ -1,60 +1,102 @@
 import os
 import sys
-from typing_extensions import runtime
+from typing import List, Dict
 
 
 
-project_path = os.getcwd()
-project_name = os.path.split(project_path)[-1]
-project_name = 'lab06'
 
-commands = []
+SOURCE_FOLDER = 'lab06'
+NOTES: str = 'Run with:  java lab06.prog.Application'
 
-args = sys.argv[1:]
-packages = os.listdir(f'./{project_name}')
+DIRECTORIES: List[str] = []  # directories to create at start
 
 
 
-if '-build' in args or '-b' in args or not args:
 
-    command = ['javac']
+def initialize() -> None:
 
-    for package in packages:
-        command.append(f'./{project_name}/{package}/*.java')
-
-    commands.append(' '.join(command))
-
-
-
-if '-jar' in args or '-j' in args:
-
-    command = ['jar cf Jar.jar']
-
-    for package in packages:
-        command.append(f'./{project_name}/{package}/*.class')
-
-    commands.append(' '.join(command))
+    for directory in DIRECTORIES:
+        if not os.path.exists(directory):
+            os.mkdir(f'./{directory}')
+            print(f'made directory: ./{directory}')
 
 
 
-if '-manifest' in args or '-m' in args:
 
-    if not os.path.exists('./MANIFEST.mf') or '-newmanifest' or '-nm' in args:
+def run_build() -> None:
 
-        prog_path = input('Program path (package.name.Class): ')
-        with open('./MANIFEST.mf', 'w', encoding='utf-8') as f:
-            f.write(f'Main-Class: {prog_path}\n')
+    commands = []
 
-
-    command = ['jar cfm Jar.jar MANIFEST.mf']
-
-    for package in packages:
-        command.append(f'./{project_name}/{package}/*.class')
-
-    commands.append(' '.join(command))
+    args = sys.argv[1:]
+    packages = os.listdir(f'./{SOURCE_FOLDER}')
 
 
 
-for command in commands:
-    os.system(command)
-    print()
+    if '-build' in args or '-b' in args or not args:
+
+        command = ['javac']
+
+        for package in packages:
+            command.append(f'./{SOURCE_FOLDER}/{package}/*.java')
+
+        commands.append(' '.join(command))
+
+
+
+    if '-jar' in args or '-j' in args:
+
+        command = ['jar cf Jar.jar']
+
+        for package in packages:
+            command.append(f'./{SOURCE_FOLDER}/{package}/*.class')
+
+        commands.append(' '.join(command))
+
+
+
+    if '-manifest' in args or '-m' in args:
+
+        if not os.path.exists('./MANIFEST.mf') or '-newmanifest' or '-nm' in args:
+
+            prog_path = input('Program path (package.name.Class): ')
+            with open('./MANIFEST.mf', 'w', encoding='utf-8') as f:
+                f.write(f'Main-Class: {prog_path}\n')
+
+
+        command = ['jar cfm Jar.jar MANIFEST.mf']
+
+        for package in packages:
+            command.append(f'./{SOURCE_FOLDER}/{package}/*.class')
+
+        commands.append(' '.join(command))
+
+
+
+    for command in commands:
+        os.system(command)
+
+
+
+
+
+
+
+def main():
+
+    initialize()
+    run_build()
+
+    print(NOTES)
+
+    return
+
+
+
+
+
+
+if __name__ == '__main__':
+    main()
+
+
+
