@@ -9,27 +9,26 @@ public class Fifo extends Thread {
 
 
     private volatile LinkedList<String> list;
+    private int MAX_SIZE;
 
     public Fifo() {
         this.list = new LinkedList<String>();
+        this.MAX_SIZE = 10;
     }
 
 
 
 
-    synchronized void put(String string) throws InterruptedException {
+    public void put(String element) throws InterruptedException {
 
-        if (this.list.size() < 10) {
-            this.list.add(string);
+        synchronized (this.list) {
 
-            if (holdsLock(this)) {
-                notify();
+            while (this.list.size() == this.MAX_SIZE) {
+                this.list.wait();
             }
 
-        } else {
-            if (holdsLock(this)) {
-                wait();
-            }
+            this.list.add(element);
+            this.list.notify();
         }
 
     }
@@ -37,26 +36,19 @@ public class Fifo extends Thread {
 
 
 
-    synchronized String get() throws InterruptedException {
+    public String get() throws InterruptedException {
 
-        String string = "";
+        synchronized (this.list) {
 
-        if (0 < this.list.size()) {
-            string = this.list.remove(0);
-
-            if (holdsLock(this)) {
-                notify();
+            while (this.list.size() == 0) {
+                this.list.wait();
             }
 
-            return string;
+            String element = this.list.remove(0);
+            this.list.notify();
 
-        } else {
-            if (holdsLock(this)) {
-                wait();
-            }
+            return element;
         }
-
-        return string;
     }
 
 

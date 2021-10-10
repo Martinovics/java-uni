@@ -5,28 +5,32 @@ package lab06.classes;
 
 public class Producer extends Thread {
 
-    private String text;
 
-    public Producer(String text) {
+    private String text;
+    private volatile Fifo list;
+    private int sleepTime;
+
+
+    public Producer(String text, Fifo list, int sleepTime) {
         this.text = text;
+        this.list = list;
+        this.sleepTime = sleepTime;
     }
 
 
 
 
-    public void go() {
+    private void go() throws InterruptedException {
 
         int c = 0;
         while (true) {
 
-            System.out.println(this.text + " " + c  + " " + (System.currentTimeMillis() % 100000));
+            long time = System.currentTimeMillis() % 100000;
 
-            try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            this.list.put(this.text + " " + time);
+            System.out.println("produced " + this.text + " " + c  + " " + time);
 
+            sleep(this.sleepTime);
             c += 1;
         }
     }
@@ -35,7 +39,12 @@ public class Producer extends Thread {
 
 
     public void run() {
-        go();
+        try {
+            go();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+
 
 }

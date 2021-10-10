@@ -1,7 +1,6 @@
 package lab06.prog;
 
 import lab06.classes.*;
-import java.lang.Thread;
 
 
 
@@ -10,17 +9,12 @@ public class Application {
 
     public static void main(String[] args) {
 
-        Producer producerOne = new Producer("elso");
-        producerOne.start();
+        Fifo list = new Fifo();
 
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        Producer producerTwo = new Producer("masodik");
-        producerTwo.start();
+        Producer producer = new Producer("producer_text", list, 2000);
+        Consumer consumer = new Consumer("consumer_text", list, 500);
+        producer.start();
+        consumer.start();
 
     }
 }
