@@ -3,7 +3,7 @@ package lab06.classes;
 
 
 
-public class Producer extends Thread {
+public class Producer implements Runnable {
 
 
     private String text;
@@ -30,7 +30,7 @@ public class Producer extends Thread {
             this.list.put(this.text + " " + time);
             System.out.println("produced " + this.text + " " + c  + " " + time);
 
-            sleep(this.sleepTime);
+            Thread.sleep(this.sleepTime);
             c += 1;
         }
     }

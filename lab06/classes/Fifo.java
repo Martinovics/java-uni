@@ -29,6 +29,8 @@ public class Fifo extends Thread {
 
             this.list.add(element);
             this.list.notify();
+
+            System.out.println("put: " + Thread.currentThread().getName() + " " + Thread.currentThread().getId());
         }
 
     }
@@ -46,6 +48,8 @@ public class Fifo extends Thread {
 
             String element = this.list.remove(0);
             this.list.notify();
+
+            System.out.println("get: " + Thread.currentThread().getName() + " " + Thread.currentThread().getId());
 
             return element;
         }
