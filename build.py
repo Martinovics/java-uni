@@ -5,10 +5,10 @@ from typing import List, Dict
 
 
 
-SOURCE_FOLDER = 'java_project_template'
-NOTES: str = 'Run with:  java java_project_template.prog.Main'
+SOURCE_FOLDER = 'lab07'
+NOTES: str = 'Run with:  java lab07.prog.Main'
 
-DIRECTORIES: List[str] = []  # directories to create at start
+DIRECTORIES: List[str] = ['files']  # directories to create at start
 
 
 
