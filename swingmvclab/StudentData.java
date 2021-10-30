@@ -38,4 +38,25 @@ public class StudentData extends AbstractTableModel {
         return this.students.size();
     }
 
+
+    public String getColumnName(int columnIndex) {
+        switch(columnIndex) {
+            case 0: return "Nev";
+            case 1: return "Neptun";
+            case 2: return "Alairas";
+            default: return "Jegy";
+        }
+    }
+
+
+    public Class<?> getColumnClass(int columnIndex) {
+        switch(columnIndex) {
+            case 0: return String.class;
+            case 1: return String.class;
+            case 2: return Boolean.class;
+            default: return Integer.class;
+        }
+    }
+
+
 }
