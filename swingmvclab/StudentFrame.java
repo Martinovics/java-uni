@@ -1,4 +1,4 @@
-package lab09.classes;
+package swingmvclab;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -10,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /*
  * A megjelen�tend� ablakunk oszt�lya.
@@ -31,7 +33,13 @@ public class StudentFrame extends JFrame {
     private void initComponents() {
         this.setLayout(new BorderLayout());
 
-        // ...
+        JTable jt = new JTable(data);
+        jt.setFillsViewportHeight(true);
+
+        JScrollPane sp = new JScrollPane(jt);
+        sp.setVisible(true);
+
+        this.add(sp, BorderLayout.CENTER);
     }
 
     /*
@@ -41,7 +49,7 @@ public class StudentFrame extends JFrame {
      */
     @SuppressWarnings("unchecked")
     public StudentFrame() {
-        super("Hallgat�i nyilv�ntart�s");
+        super("Hallgatoi nyilvantartas");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         // Indul�skor bet�ltj�k az adatokat

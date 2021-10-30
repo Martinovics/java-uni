@@ -1,4 +1,4 @@
-package lab09.classes;
+package swingmvclab;
 
 import java.io.Serializable;
 

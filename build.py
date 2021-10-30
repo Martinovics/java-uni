@@ -5,8 +5,8 @@ from typing import List, Dict
 
 
 
-SOURCE_FOLDER = 'lab09'
-NOTES: str = 'Run with:  java lab09.classes.StudentFrame'
+SOURCE_FOLDER = 'swingmvclab'
+NOTES: str = 'Run with:  java swingmvclab.StudentFrame'
 
 DIRECTORIES: List[str] = []  # directories to create at start
 
@@ -37,7 +37,7 @@ def run_build() -> None:
         command = ['javac']
 
         for package in packages:
-            command.append(f'./{SOURCE_FOLDER}/{package}/*.java')
+            command.append(f'./{SOURCE_FOLDER}/*.java')
 
         commands.append(' '.join(command))
 
