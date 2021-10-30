@@ -5,8 +5,8 @@ from typing import List, Dict
 
 
 
-SOURCE_FOLDER = 'java_project_template'
-NOTES: str = 'Run with:  java java_project_template.prog.Main'
+SOURCE_FOLDER = 'lab09'
+NOTES: str = 'Run with:  java lab09.classes.StudentFrame'
 
 DIRECTORIES: List[str] = []  # directories to create at start
 
