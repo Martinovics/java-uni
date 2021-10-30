@@ -59,4 +59,23 @@ public class StudentData extends AbstractTableModel {
     }
 
 
+    public boolean isCellEditable(int rowIndex, int columnIndex){
+        if (columnIndex == 2 || columnIndex == 3) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex)
+    {
+        Student student = students.get(rowIndex);
+        if (columnIndex == 2) {
+            student.setSignature((Boolean) aValue);
+        } else if (columnIndex == 3) {
+            student.setGrade((Integer) aValue);
+        }
+    }
+
 }
