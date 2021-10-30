@@ -9,9 +9,17 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+
+import java.awt.*;
+import java.awt.event.*;
 
 /*
  * A megjelen�tend� ablakunk oszt�lya.
@@ -25,6 +33,21 @@ public class StudentFrame extends JFrame {
      * NE M�DOS�TSD!
      */
     private StudentData data;
+    private JTextField nameTextField;
+    private JTextField neptunTextField;
+
+
+    private class ButtonActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            data.addStudent(nameTextField.getText(), neptunTextField.getText());
+            nameTextField.setText("");
+            neptunTextField.setText("");
+        }
+
+    }
+
 
     /*
      * Itt hozzuk l�tre �s adjuk hozz� az ablakunkhoz a k�l�nb�z� komponenseket
@@ -39,7 +62,27 @@ public class StudentFrame extends JFrame {
         JScrollPane sp = new JScrollPane(jt);
         sp.setVisible(true);
 
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+
+        JLabel nameLabel = new JLabel("Nev:");
+        JLabel neptunLabel = new JLabel("Neptun:");
+
+        nameTextField = new JTextField(20);
+        neptunTextField = new JTextField(6);
+
+        JButton button = new JButton("Felvesz");
+        button.addActionListener(new ButtonActionListener());
+
+        panel.add(nameLabel);
+        panel.add(nameTextField);
+        panel.add(neptunLabel);
+        panel.add(neptunTextField);
+        panel.add(button);
+
         this.add(sp, BorderLayout.CENTER);
+        this.add(panel, BorderLayout.SOUTH);
     }
 
     /*
