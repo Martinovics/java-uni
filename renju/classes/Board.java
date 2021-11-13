@@ -1,21 +1,18 @@
 package renju.classes;
 
+import java.awt.*;
+
 
 
 
 public class Board {
 
-    private Colors board[][];
-
-
-    public Board() {
-        this.board = new Colors[15][15];
-    }
+    private Color board[][] = new Color[15][15];
 
 
 
 
-    public boolean update(int rowIndex, int colIndex, Colors color) {
+    public boolean update(int rowIndex, int colIndex, Color color) {
         if (board[rowIndex][colIndex] != null) {  // tile is not free -> cannot update
             return false;
         }
@@ -27,7 +24,7 @@ public class Board {
 
 
 
-    public int countColor(Colors color) {
+    public int countColor(Color color) {
         int c = 0;
         for (int row=0; row != 15; row+=1) {
             for (int col=0; col != 15; col+=1) {
@@ -42,7 +39,7 @@ public class Board {
 
 
 
-    public Colors colorAt(int rowIndex, int colIndex) {
+    public Color colorAt(int rowIndex, int colIndex) {
         return board[rowIndex][rowIndex];
     }
 
