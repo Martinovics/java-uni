@@ -5,10 +5,10 @@ from typing import List, Dict
 
 
 
-SOURCE_FOLDER = 'java_project_template'
-NOTES: str = 'Run with:  java java_project_template.prog.Main'
+SOURCE_FOLDER = 'renju'
+NOTES: str = 'Run with:  java renju.app.Renju'
 
-DIRECTORIES: List[str] = []  # directories to create at start
+DIRECTORIES: List[str] = ['saves']  # directories to create at start
 
 
 
@@ -37,7 +37,8 @@ def run_build() -> None:
         command = ['javac']
 
         for package in packages:
-            command.append(f'./{SOURCE_FOLDER}/{package}/*.java')
+            if os.listdir(f'./{SOURCE_FOLDER}/{package}'):
+                command.append(f'./{SOURCE_FOLDER}/{package}/*.java')
 
         commands.append(' '.join(command))
 
@@ -48,7 +49,8 @@ def run_build() -> None:
         command = ['jar cf Jar.jar']
 
         for package in packages:
-            command.append(f'./{SOURCE_FOLDER}/{package}/*.class')
+            if os.listdir(f'./{SOURCE_FOLDER}/{package}'):
+                command.append(f'./{SOURCE_FOLDER}/{package}/*.class')
 
         commands.append(' '.join(command))
 
@@ -66,7 +68,8 @@ def run_build() -> None:
         command = ['jar cfm Jar.jar MANIFEST.mf']
 
         for package in packages:
-            command.append(f'./{SOURCE_FOLDER}/{package}/*.class')
+            if os.listdir(f'./{SOURCE_FOLDER}/{package}'):
+                command.append(f'./{SOURCE_FOLDER}/{package}/*.class')
 
         commands.append(' '.join(command))
 
