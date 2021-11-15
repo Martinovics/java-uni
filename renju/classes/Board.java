@@ -1,11 +1,12 @@
 package renju.classes;
 
 import java.awt.*;
+import java.io.Serializable;
 
 
 
 
-public class Board {
+public class Board implements Serializable{
 
     private Color board[][] = new Color[15][15];
 

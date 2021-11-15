@@ -1,6 +1,8 @@
 package renju.classes;
 
-import java.io.Serializable;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 
@@ -26,6 +28,15 @@ public class Game implements Serializable {
     }
 
 
+
+    public void save() throws FileNotFoundException, IOException{
+        String filename = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+
+        FileOutputStream fo = new FileOutputStream("./saves/" + filename + ".ser");
+        ObjectOutputStream so = new ObjectOutputStream(fo);
+        so.writeObject(this);
+        so.close();
+    }
 
 
 

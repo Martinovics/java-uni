@@ -1,9 +1,11 @@
 package renju.classes;
 
+import java.io.Serializable;
 
 
 
-public class Player {
+
+public class Player implements Serializable {
 
     private String name;
     private Colors color;
