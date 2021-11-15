@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import renju.classes.GameController;
+
 
 
 
@@ -11,32 +13,6 @@ public class Renju {
 
     private CardLayout cardLayout;
     private Container contentPane;
-
-
-
-
-    private class BoardButtonListener implements ActionListener {
-
-        private int rowIndex;
-        private int colIndex;
-
-        public BoardButtonListener(int rowIndex, int colIndex) {
-            this.rowIndex = rowIndex;
-            this.colIndex = colIndex;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JButton button = (JButton) e.getSource();
-            System.out.println("button " + this.rowIndex + " " + this.colIndex + " clicked");
-            button.setBackground(Color.BLACK);
-
-            if (this.rowIndex == 0 && this.colIndex == 0) {
-                cardLayout.previous(contentPane);
-            }
-
-        }
-    }
 
 
 
@@ -54,53 +30,50 @@ public class Renju {
         contentPane = frame.getContentPane();
         contentPane.setLayout(cardLayout);
 
-        JPanel panelMenu = new JPanel();
-        JPanel panelBoard = new JPanel();
-        JButton button1 = new JButton("previous frame!");
-        JButton button2 = new JButton("next frame");
-        contentPane.add(panelMenu, "Panel 1");
-        contentPane.add(panelBoard, "Panel 2");
 
+        JPanel menuPanel = new JPanel(new GridLayout(3, 1));
 
+        JButton newGameButton = new JButton("New Game");
+        JButton loadGameButton = new JButton("Load Game");
+        JButton statisticsButton = new JButton("Statistics");
 
-        panelMenu.add(button2);
+        menuPanel.add(newGameButton);
+        menuPanel.add(loadGameButton);
+        menuPanel.add(statisticsButton);
 
-
-        panelBoard.setBackground(Color.DARK_GRAY);
-
-        GridLayout layout = new GridLayout(15, 15);
-        layout.setHgap(1);
-        layout.setVgap(1);
-        panelBoard.setLayout(layout);
-
-        for (int row=0; row != 15; row+=1) {
-            for (int col=0; col != 15; col+=1) {
-                JButton button = new JButton();
-                button.addActionListener(new BoardButtonListener(row, col));
-                button.setBackground(Color.ORANGE);
-                button.setBorderPainted(false);
-                panelBoard.add(button);
-            }
-        }
-
-        ActionListener btnListener = new ActionListener() {
+        ActionListener menuButtonListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                cardLayout.next(contentPane);
+                // cardLayout.next(contentPane);
+                JButton srcButton = (JButton) e.getSource();
+
+                if (srcButton.getText().equals("New Game")) {
+                    System.out.println("new game will be created");
+                } else if (srcButton.getText().equals("Load Game")) {
+                    System.out.println("game will be loaded");
+                } else if (srcButton.getText().equals("Statistics")) {
+                    System.out.println("you can read stats");
+                }
             }
         };
 
-        button1.addActionListener(btnListener);
-        button2.addActionListener(btnListener);
+        newGameButton.addActionListener(menuButtonListener);
+        loadGameButton.addActionListener(menuButtonListener);
+        statisticsButton.addActionListener(menuButtonListener);
 
 
-        frame.add(panelMenu);
-        frame.add(panelBoard);
+        JPanel boardPanel = new GameController().initPanel();
+        contentPane.add(menuPanel, "menuPanel");
+        contentPane.add(boardPanel, "boardPanel");
+
+
+        frame.add(menuPanel);
+        frame.add(boardPanel);
     }
 
 
 
     public static void main(String[] args) {
-        Renju app = new Renju();
+        new Renju();
     }
 
  }
