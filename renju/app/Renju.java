@@ -42,6 +42,7 @@ public class Renju {
         menuPanel.add(statisticsButton);
 
         ActionListener menuButtonListener = new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
                 // cardLayout.next(contentPane);
                 JButton srcButton = (JButton) e.getSource();
@@ -60,8 +61,32 @@ public class Renju {
                     Game game = new Game(p1, p2);
 
                     JPanel gamePanel = new GameController(game).initPanel();
-                    contentPane.add(gamePanel, "Game Panel");
-                    cardLayout.next(contentPane);
+                    gamePanel.setFocusable(true);
+                    gamePanel.addKeyListener(new KeyListener() {
+
+                        @Override
+                        public void keyTyped(KeyEvent e) {}
+
+                        @Override
+                        public void keyReleased(KeyEvent e) {}
+
+                        @Override
+                        public void keyPressed(KeyEvent e) {
+                            if (e.isControlDown() && e.getKeyChar() != 's' && e.getKeyCode() == 83) {
+                                System.out.println("game saved");
+                            }
+                            if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                                System.out.println("game exited");
+                                //cardLayout.previous(contentPane);
+                                cardLayout.show(contentPane, "menuPanel");
+                                cardLayout.removeLayoutComponent(gamePanel);
+                            }
+                        }
+                    });
+
+                    contentPane.add(gamePanel, "gamePanel");
+                    //cardLayout.next(contentPane);
+                    cardLayout.show(contentPane, "gamePanel");
                     // contentPane.remove(gamePanel);
 
 

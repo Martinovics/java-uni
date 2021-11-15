@@ -54,28 +54,13 @@ public class GameController extends JPanel {
         for (int row=0; row != 15; row+=1) {
             for (int col=0; col != 15; col+=1) {
                 JButton button = new JButton();
+                button.setFocusable(false);
                 button.addActionListener(new BoardButtonListener(row, col));
                 button.setBackground(Color.ORANGE);
                 button.setBorderPainted(false);
                 panel.add(button);
             }
         }
-
-        panel.setFocusable(true);
-
-        panel.addKeyListener(new KeyListener() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {}
-
-            @Override
-            public void keyReleased(KeyEvent e) {}
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                System.out.println("Pressed " + e.getKeyChar());
-            }
-        });
 
         return panel;
     }
