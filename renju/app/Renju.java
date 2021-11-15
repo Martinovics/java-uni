@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import renju.classes.GameController;
+import renju.classes.*;
 
 
 
@@ -48,8 +48,26 @@ public class Renju {
 
                 if (srcButton.getText().equals("New Game")) {
                     System.out.println("new game will be created");
+
+                    String p1Name = JOptionPane.showInputDialog(frame, "First player's name:", null);
+                    System.out.println(p1Name);
+                    String p2Name = JOptionPane.showInputDialog(frame, "Second player's name:", null);
+                    System.out.println(p2Name);
+
+                    Player p1 = new Player(p1Name, Colors.BLACK);
+                    Player p2 = new Player(p1Name, Colors.WHITE);
+
+                    Game game = new Game(p1, p2);
+
+                    JPanel gamePanel = new GameController(game).initPanel();
+                    contentPane.add(gamePanel, "Game Panel");
+                    cardLayout.next(contentPane);
+                    // contentPane.remove(gamePanel);
+
+
                 } else if (srcButton.getText().equals("Load Game")) {
                     System.out.println("game will be loaded");
+                    // jtable
                 } else if (srcButton.getText().equals("Statistics")) {
                     System.out.println("you can read stats");
                 }
@@ -61,13 +79,13 @@ public class Renju {
         statisticsButton.addActionListener(menuButtonListener);
 
 
-        JPanel boardPanel = new GameController().initPanel();
+        // JPanel boardPanel = new GameController().initPanel();
         contentPane.add(menuPanel, "menuPanel");
-        contentPane.add(boardPanel, "boardPanel");
+        // contentPane.add(boardPanel, "boardPanel");
 
 
         frame.add(menuPanel);
-        frame.add(boardPanel);
+        // frame.add(boardPanel);
     }
 
 

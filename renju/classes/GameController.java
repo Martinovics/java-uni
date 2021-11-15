@@ -10,6 +10,7 @@ import javax.swing.*;
 public class GameController extends JPanel {
 
 
+    private Game game;
 
 
     private class BoardButtonListener implements ActionListener {
@@ -28,6 +29,13 @@ public class GameController extends JPanel {
             System.out.println("button " + this.rowIndex + " " + this.colIndex + " clicked");
             button.setBackground(Color.BLACK);
         }
+    }
+
+
+
+
+    public GameController(Game game) {
+        this.game = game;
     }
 
 
@@ -52,6 +60,22 @@ public class GameController extends JPanel {
                 panel.add(button);
             }
         }
+
+        panel.setFocusable(true);
+
+        panel.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println("Pressed " + e.getKeyChar());
+            }
+        });
 
         return panel;
     }

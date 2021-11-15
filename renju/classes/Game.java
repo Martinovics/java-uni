@@ -12,6 +12,13 @@ public class Game implements Serializable {
     private Board board;
 
 
+    public Game(Player p1, Player p2) {
+        this.p1 = p1;
+        this.p2 = p2;
+        this.board = new Board();
+    }
+
+
     public Game (Player p1, Player p2, Board board) {
         this.p1 = p1;
         this.p2 = p2;
