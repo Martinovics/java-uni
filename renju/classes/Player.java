@@ -1,5 +1,6 @@
 package renju.classes;
 
+import java.awt.*;
 import java.io.Serializable;
 
 
@@ -8,9 +9,9 @@ import java.io.Serializable;
 public class Player implements Serializable {
 
     private String name;
-    private Colors color;
+    private Color color;
 
-    public Player(String name, Colors color) {
+    public Player(String name, Color color) {
         this.name = name;
         this.color = color;
     }
@@ -21,23 +22,23 @@ public class Player implements Serializable {
     }
 
 
-    public Colors getColor() {
+    public Color getColor() {
         return color;
     }
 
 
-    public void setColor(Colors color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
 
     public boolean isBlack() {
-        return this.color.equals(Colors.BLACK);
+        return this.color.equals(Color.BLACK);
     }
 
 
     public boolean isWhite() {
-        return this.color.equals(Colors.WHITE);
+        return this.color.equals(Color.WHITE);
     }
 
 

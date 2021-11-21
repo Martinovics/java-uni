@@ -11,15 +11,25 @@ public class Board implements Serializable{
     private Color board[][] = new Color[15][15];
 
 
+    public Board() {
+        for (int row=0; row != 15; row+=1) {
+            for (int col=0; col != 15; col+=1) {
+                this.board[row][col] = Color.ORANGE;
+            }
+        }
+    }
+
+
 
 
     public boolean update(int rowIndex, int colIndex, Color color) {
-        if (board[rowIndex][colIndex] != null) {  // tile is not free -> cannot update
-            return false;
+        if (board[rowIndex][colIndex].equals(Color.ORANGE)) {
+            board[rowIndex][colIndex] = color;
+            System.out.println("updated: " + colIndex + " " + rowIndex);
+            return true;
         }
-
-        board[rowIndex][colIndex] = color;
-        return true;
+        System.out.println("could not update");
+        return false;
     }
 
 
@@ -41,7 +51,7 @@ public class Board implements Serializable{
 
 
     public Color colorAt(int rowIndex, int colIndex) {
-        return board[rowIndex][rowIndex];
+        return board[rowIndex][colIndex];
     }
 
 

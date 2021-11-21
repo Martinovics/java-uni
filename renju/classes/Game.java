@@ -11,7 +11,7 @@ public class Game implements Serializable {
 
     private Player p1;
     private Player p2;
-    private Board board;
+    public Board board;
 
 
     public Game(Player p1, Player p2) {
@@ -27,6 +27,43 @@ public class Game implements Serializable {
         this.board = board;
     }
 
+
+    public String p1Name() {
+        return this.p1.getName();
+    }
+
+    public String p2Name() {
+        return this.p2.getName();
+    }
+
+    public Board getBoard() {
+        return this.board;
+    }
+
+
+    public boolean hasSignature() {
+        return true;
+    }
+
+
+    public void setSignature(boolean foo) {
+
+    }
+
+
+    public int getGrade() {
+        return 5;
+    }
+
+
+    public void setGrade(int foo) {
+
+    }
+
+
+    public boolean isFinished() {
+        return false;
+    }
 
 
     public void save() throws FileNotFoundException, IOException{

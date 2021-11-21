@@ -10,7 +10,7 @@ import javax.swing.*;
 public class GameController extends JPanel {
 
 
-    private Game game;
+    public Game game;
 
 
     private class BoardButtonListener implements ActionListener {
@@ -28,6 +28,9 @@ public class GameController extends JPanel {
             JButton button = (JButton) e.getSource();
             System.out.println("button " + this.rowIndex + " " + this.colIndex + " clicked");
             button.setBackground(Color.BLACK);
+
+            game.board.update(this.rowIndex, this.colIndex, Color.BLACK);
+            System.out.println("num of blacks=" + game.board.countColor(Color.BLACK));
         }
     }
 
@@ -54,9 +57,9 @@ public class GameController extends JPanel {
         for (int row=0; row != 15; row+=1) {
             for (int col=0; col != 15; col+=1) {
                 JButton button = new JButton();
-                button.setFocusable(false);
                 button.addActionListener(new BoardButtonListener(row, col));
-                button.setBackground(Color.ORANGE);
+                button.setBackground(game.getBoard().colorAt(row, col));
+                button.setFocusable(false);
                 button.setBorderPainted(false);
                 panel.add(button);
             }
