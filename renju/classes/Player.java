@@ -27,6 +27,15 @@ public class Player implements Serializable {
     }
 
 
+    public String getColorName() {
+        if (this.color.equals(Color.BLACK)) {
+            return "BLACK";
+        } else {
+            return "WHITE";
+        }
+    }
+
+
     public void setColor(Color color) {
         this.color = color;
     }
