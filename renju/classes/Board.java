@@ -101,7 +101,6 @@ public class Board implements Serializable{
 
 
     public Color nextColor() {
-        System.out.println("nextColor=" + this.turns.get(0) + " len=" + this.turns.size());
         return this.turns.get(0);
     }
 

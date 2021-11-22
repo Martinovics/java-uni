@@ -31,27 +31,32 @@ public class GameController extends JPanel {
                 button.setBackground(color);
             }
 
-
-            Player player = game.whoHasColor(color);
-            if (game.board.countColor(Color.BLACK) + game.board.countColor(Color.WHITE) < 3) {
-                System.out.println("Player1 places a " + player.getColorName() + " tile");
-            } else {
-                if (color.equals(Color.ORANGE)) {
-                    System.out.println(player.getName() + " removes a " + player.getColorName() + " tile");
-                } else {
-                    System.out.println(player.getName() + " places a" + player.getColorName() + " tile");
-                }
-            }
+            // NOTE: print whos next
+            // NOTE: jtable player black, player white
 
             // 2 black and 1 white -> players choose color
             if (game.board.countColor(Color.BLACK) == 2 && game.board.countColor(Color.WHITE) == 1) {
-                int choice = JOptionPane.showConfirmDialog(null, game.p1.getName() + " will be BLACK!");
+                int choice = JOptionPane.showConfirmDialog(null, "'" + game.p1.getName() + "' will be BLACK!");
                 if (choice == JOptionPane.YES_OPTION) {
                     game.p1.setColor(Color.BLACK);
                     game.p2.setColor(Color.WHITE);
                 } else {
                     game.p1.setColor(Color.WHITE);
                     game.p2.setColor(Color.BLACK);
+                }
+            }
+
+
+            color = game.board.nextColor();
+            Player player = game.whoHasColor(color);
+            if (game.board.countColor(Color.BLACK) + game.board.countColor(Color.WHITE) < 3) {
+                System.out.println("P1: " + player.getColorName());
+            } else {
+                if (color.equals(Color.ORANGE)) {
+                    player = game.whoHasColor(Color.WHITE);
+                    System.out.println(player.getName() + ": remove a BLACK tile"); // white removes black
+                } else {
+                    System.out.println(player.getName() + ": " + player.getColorName());
                 }
             }
 
@@ -89,7 +94,7 @@ public class GameController extends JPanel {
             }
         }
 
-        System.out.println();
+        System.out.println("P1: BLACK");
         return panel;
     }
 

@@ -90,7 +90,6 @@ public class Renju {
                 File[] files = dir.listFiles();
                 if (files != null) {
                     for (File file : files) {
-                        System.out.println(file.getName());
                         ObjectInputStream ois = new ObjectInputStream(new FileInputStream("saves/" + file.getName()));
                         data.games.add((Game)ois.readObject());
                         ois.close();
