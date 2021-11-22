@@ -31,8 +31,8 @@ public class GameController extends JPanel {
                 button.setBackground(color);
             }
 
-            // NOTE: print whos next
-            // NOTE: jtable player black, player white
+            System.out.println(color + " longest streak=" + game.longestStreak(color));
+            System.out.println(color + " has double opened=" + game.hasDoubleOpened());
 
             // 2 black and 1 white -> players choose color
             if (game.board.countColor(Color.BLACK) == 2 && game.board.countColor(Color.WHITE) == 1) {
