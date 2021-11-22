@@ -52,7 +52,7 @@ public class Renju {
                     if (e.isControlDown() && e.getKeyChar() != 's' && e.getKeyCode() == 83) {
                         game.save();
                     } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        game.save();
+                        // game.save();
                         cardLayout.show(contentPane, "menuPanel");
                         cardLayout.removeLayoutComponent(gamePanel);
                     }
@@ -139,7 +139,7 @@ public class Renju {
                             if (e.isControlDown() && e.getKeyChar() != 's' && e.getKeyCode() == 83) {
                                 gameController.game.save();
                             } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                                gameController.game.save();
+                                // gameController.game.save();
                                 cardLayout.show(contentPane, "menuPanel");
                                 cardLayout.removeLayoutComponent(gamePanel);
                             }

@@ -2,6 +2,7 @@ package renju.classes;
 
 
 import java.util.List;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -19,10 +20,10 @@ public class GameData extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Game game = games.get(rowIndex);
         switch(columnIndex) {
-            case 0: return game.p1.getName();
-            case 1: return game.p2.getName();
+            case 0: return game.whoHasColor(Color.BLACK).getName();
+            case 1: return game.whoHasColor(Color.WHITE).getName();
             case 2: return game.getLastSaveTime();
-            default: return game.isFinished();
+            default: return game.hasWinner();
         }
     }
 
@@ -45,9 +46,9 @@ public class GameData extends AbstractTableModel {
 
     public String getColumnName(int columnIndex) {
         switch(columnIndex) {
-            case 0: return "Player 1";
-            case 1: return "Player 2";
-            case 2: return "Saved";
+            case 0: return "BLACK";
+            case 1: return "WHITE";
+            case 2: return "Last Saved";
             default: return "Finished";
         }
     }
