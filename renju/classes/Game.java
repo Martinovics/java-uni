@@ -14,6 +14,7 @@ public class Game implements Serializable {
     public Player p2;
     public Board board;
     private String lastSaved;
+    private Player winner;
 
 
     public Game(Player p1, Player p2) {
@@ -50,6 +51,32 @@ public class Game implements Serializable {
         } else {
             return this.p2;
         }
+    }
+
+
+
+
+
+    public void setWinner(Player p) {
+        this.winner = p;
+    }
+
+
+
+
+    public boolean hasWinner() {
+        if (this.winner != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+    public Player getWinner() {
+        return this.winner;
     }
 
 
@@ -233,17 +260,22 @@ public class Game implements Serializable {
 
 
 
-
-
-
-    public void save() throws FileNotFoundException, IOException {
+    public void save() {
         String filename = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
         this.lastSaved = filename;
 
-        FileOutputStream fo = new FileOutputStream("./saves/" + filename + ".ser");
-        ObjectOutputStream so = new ObjectOutputStream(fo);
-        so.writeObject(this);
-        so.close();
+        System.out.println("saved game: " + filename + ".ser");
+
+        try {
+            FileOutputStream fo = new FileOutputStream("./saves/" + filename + ".ser");
+            ObjectOutputStream so = new ObjectOutputStream(fo);
+            so.writeObject(this);
+            so.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
 

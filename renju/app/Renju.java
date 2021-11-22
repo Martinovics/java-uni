@@ -25,8 +25,6 @@ public class Renju {
 
         public void startGame() {
 
-            System.out.println("new game will be created");
-
             String p1Name = JOptionPane.showInputDialog(frame, "First player's name:", null);
             if (p1Name == null) return;
             String p2Name = JOptionPane.showInputDialog(frame, "Second player's name:", null);
@@ -52,15 +50,9 @@ public class Renju {
                 @Override
                 public void keyPressed(KeyEvent e) {
                     if (e.isControlDown() && e.getKeyChar() != 's' && e.getKeyCode() == 83) {
-                        System.out.println("game saved");
-                        try {
-                            game.save();
-                        } catch (IOException e1) {
-                            e1.printStackTrace();
-                        }
-                    }
-                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        System.out.println("game exited");
+                        game.save();
+                    } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        game.save();
                         cardLayout.show(contentPane, "menuPanel");
                         cardLayout.removeLayoutComponent(gamePanel);
                     }
@@ -145,15 +137,9 @@ public class Renju {
                         @Override
                         public void keyPressed(KeyEvent e) {
                             if (e.isControlDown() && e.getKeyChar() != 's' && e.getKeyCode() == 83) {
-                                System.out.println("game saved");
-                                try {
-                                    gameController.game.save();
-                                } catch (IOException e1) {
-                                    e1.printStackTrace();
-                                }
-                            }
-                            if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                                System.out.println("game exited");
+                                gameController.game.save();
+                            } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                                gameController.game.save();
                                 cardLayout.show(contentPane, "menuPanel");
                                 cardLayout.removeLayoutComponent(gamePanel);
                             }
@@ -208,7 +194,6 @@ public class Renju {
                 if (srcButton.getText().equals("New Game")) {
                     new NewGame().startGame();
                 } else if (srcButton.getText().equals("Load Game")) {
-                    System.out.println("game will be loaded");
                     new LoadGame();
                 } else if (srcButton.getText().equals("Statistics")) {
                     System.out.println("you can read stats");

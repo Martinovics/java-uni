@@ -24,6 +24,13 @@ public class GameController extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            if (game.hasWinner()) {
+                System.out.println("Game has ended!");
+                return;
+            }
+
+
             JButton button = (JButton) e.getSource();
 
             Color color = game.board.nextColor();
@@ -31,8 +38,37 @@ public class GameController extends JPanel {
                 button.setBackground(color);
             }
 
-            System.out.println(color + " longest streak=" + game.longestStreak(color));
-            System.out.println(color + " has double opened=" + game.hasDoubleOpened());
+            // check end game
+            // white wins:
+            //  black has double three or double four
+            //  black has more than 5
+            //  white has at least 5
+            // black wins
+            //  black has 5
+
+            if (game.hasDoubleOpened()) {
+                game.setWinner(game.whoHasColor(Color.WHITE));
+                System.out.println(game.whoHasColor(Color.BLACK).getName() + " (BLACK) has double opened 3 or 4.");
+            } else if (5 < game.longestStreak(Color.BLACK)) {
+                game.setWinner(game.whoHasColor(Color.WHITE));
+                System.out.println(game.whoHasColor(Color.BLACK).getName() + " (BLACK) has a streak greater than 5.");
+            } else if (5 <= game.longestStreak(Color.WHITE)) {
+                game.setWinner(game.whoHasColor(Color.WHITE));
+                System.out.println(game.whoHasColor(Color.WHITE).getName() + " (WHITE) has streak 5<=");
+            } else if (game.longestStreak(Color.WHITE) == 5) {
+                game.setWinner(game.whoHasColor(Color.BLACK));
+                System.out.println(game.whoHasColor(Color.BLACK).getName() + " (BLACK) has a 5 streak.");
+            }
+
+            if (game.hasWinner()) {
+                game.save();
+                Player winner = game.getWinner();
+                String winningMsg = "'" + winner.getName() + "' (" + winner.getColorName() + ") has won the game!";
+                System.out.println(winningMsg);
+                JOptionPane.showMessageDialog(null, winningMsg);
+                return;
+            }
+
 
             // 2 black and 1 white -> players choose color
             if (game.board.countColor(Color.BLACK) == 2 && game.board.countColor(Color.WHITE) == 1) {
@@ -59,7 +95,6 @@ public class GameController extends JPanel {
                     System.out.println(player.getName() + ": " + player.getColorName());
                 }
             }
-
         }
     }
 
