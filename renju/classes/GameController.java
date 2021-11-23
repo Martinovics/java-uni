@@ -55,7 +55,7 @@ public class GameController extends JPanel {
             } else if (5 <= game.longestStreak(Color.WHITE)) {
                 game.setWinner(game.whoHasColor(Color.WHITE));
                 System.out.println(game.whoHasColor(Color.WHITE).getName() + " (WHITE) has streak 5<=");
-            } else if (game.longestStreak(Color.WHITE) == 5) {
+            } else if (game.longestStreak(Color.BLACK) == 5) {
                 game.setWinner(game.whoHasColor(Color.BLACK));
                 System.out.println(game.whoHasColor(Color.BLACK).getName() + " (BLACK) has a 5 streak.");
             }

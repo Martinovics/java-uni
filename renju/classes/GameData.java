@@ -1,8 +1,9 @@
 package renju.classes;
 
 
-import java.util.List;
+
 import java.awt.Color;
+import java.util.List;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
