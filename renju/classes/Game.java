@@ -31,12 +31,6 @@ public class Game implements Serializable {
 
 
 
-    public boolean isFinished() {
-        return false;
-    }
-
-
-
 
     public String getLastSaveTime() {
         return this.lastSaved;

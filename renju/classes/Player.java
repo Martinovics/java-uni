@@ -41,14 +41,4 @@ public class Player implements Serializable {
     }
 
 
-    public boolean isBlack() {
-        return this.color.equals(Color.BLACK);
-    }
-
-
-    public boolean isWhite() {
-        return this.color.equals(Color.WHITE);
-    }
-
-
 }
