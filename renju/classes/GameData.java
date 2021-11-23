@@ -10,6 +10,7 @@ import javax.swing.table.AbstractTableModel;
 
 
 
+@SuppressWarnings("serial")
 public class GameData extends AbstractTableModel {
 
 

@@ -196,7 +196,8 @@ public class Renju {
         }
 
 
-        public void initPanel() {
+        @SuppressWarnings("serial")
+		public void initPanel() {
 
             panel = new JPanel(new GridLayout(4, 1));
 

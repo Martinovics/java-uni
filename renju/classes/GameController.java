@@ -7,6 +7,7 @@ import javax.swing.*;
 
 
 
+@SuppressWarnings("serial")
 public class GameController extends JPanel {
 
     public Game game;

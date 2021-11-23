@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 
 
+@SuppressWarnings("serial")
 public class Game implements Serializable {
 
     public Player p1;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 
 
+@SuppressWarnings("serial")
 public class Board implements Serializable{
 
     private Color board[][] = new Color[15][15];
