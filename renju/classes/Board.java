@@ -6,14 +6,24 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-
+/** Játékmezõ osztály.
+*/
 @SuppressWarnings("serial")
 public class Board implements Serializable{
 
+	/** Játékmezõ.
+	*/
     private Color board[][] = new Color[15][15];
+    /** Lépések sorrendje.
+	*/
     private List<Color> turns = new ArrayList<>();
 
 
+    
+    
+    /**
+     * Létrehoz egy üres táblát és inicializálja a lépések sorrendjét.  
+     */
     public Board() {
         for (int row=0; row != 15; row+=1) {
             for (int col=0; col != 15; col+=1) {
@@ -24,7 +34,7 @@ public class Board implements Serializable{
     }
 
 
-
+    
 
     private void initTurns() {
 
@@ -51,8 +61,16 @@ public class Board implements Serializable{
     }
 
 
+    
 
-
+    /**
+    * Frissít egy pozíciót a megadott színre a játékmezõn.  
+    *
+    * @param  rowIndex A mezõ egyik sorának az indexe.
+    * @param  colIndex A mezõ egyik oszlopának az indexe.
+    * @param  color A szín, amire frissíteni szeretnék a megadott pozíciót.
+    * @return True, ha sikeres, amúgy false.
+    */
     public boolean update(int rowIndex, int colIndex, Color color) {
 
         if (color.equals(Color.ORANGE)) {  // special case -> remove black
@@ -78,7 +96,13 @@ public class Board implements Serializable{
 
 
 
-
+    
+    /**
+     * Megszámolja, hogy a megadott színbõl hány található a játékmezõn.  
+     *
+     * @param  color A szín, amit meg szeretnénk számolni.
+     * @return Egész szám.
+     */
     public int countColor(Color color) {
         int c = 0;
         for (int row=0; row != 15; row+=1) {
@@ -94,6 +118,13 @@ public class Board implements Serializable{
 
 
 
+    /**
+     * Megadja, hogy a megadott pozíción milyen szín található.  
+     *
+     * @param  rowIndex A mezõ egyik sorának az indexe.
+     * @param  colIndex A mezõ egyik oszlopának az indexe.
+     * @return Szín.
+     */
     public Color colorAt(int rowIndex, int colIndex) {
         return board[rowIndex][colIndex];
     }
@@ -101,6 +132,11 @@ public class Board implements Serializable{
 
 
 
+    /**
+     * Megadja, hogy melyik szín következik a lépésben.  
+     *
+     * @return Szín.
+     */
     public Color nextColor() {
         return this.turns.get(0);
     }

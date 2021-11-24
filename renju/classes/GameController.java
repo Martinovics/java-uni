@@ -6,10 +6,14 @@ import javax.swing.*;
 
 
 
-
+/** A játék lebonyolítására szolgáló osztály.
+*/
 @SuppressWarnings("serial")
 public class GameController extends JPanel {
 
+	/**
+     * Egy játék melyet le kell bonyolítani.
+     */
     public Game game;
 
 
@@ -99,16 +103,22 @@ public class GameController extends JPanel {
         }
     }
 
+    
 
 
-
+    /** Inicializál egy játékvezérlõt.
+    * @param game A játék melyet le kell bonyolítani.
+	*/
     public GameController(Game game) {
         this.game = game;
     }
 
 
 
-
+    
+    /** Inicializálja a játék paneljét.
+     * @return Játékpanel.
+	*/
     public JPanel initPanel() {
         JPanel panel = new JPanel();
 

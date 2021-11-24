@@ -7,24 +7,52 @@ import java.time.format.DateTimeFormatter;
 
 
 
-
+/** Játék osztály.
+*/
 @SuppressWarnings("serial")
 public class Game implements Serializable {
 
+	/** Elsõ játékos.
+	*/
     public Player p1;
+    /** Második játékos.
+    */
     public Player p2;
+    /** Játékmezõ.
+    */
     public Board board;
+    /** Utolsó mentés ideje.
+    */
     private String lastSaved;
+    /** A nyertes játékos.
+    */
     private Player winner;
 
 
+    
+    
+    /**
+     * Létrehoz egy játékot, üres játékmezõvel.  
+     *
+     * @param  p1 Elsõ játékos.
+     * @param  p2 Második játékos.
+     */
     public Game(Player p1, Player p2) {
         this.p1 = p1;
         this.p2 = p2;
         this.board = new Board();
     }
 
-
+    
+    
+    
+    /**
+     * Létrehoz egy játékot, a megadott játékmezõvel.  
+     *
+     * @param  p1 Elsõ játékos.
+     * @param  p2 Második játékos.
+     * @param  board A játékmezõ, melyet használni szeretnénk.
+     */
     public Game(Player p1, Player p2, Board board) {
         this(p1, p2);
         this.board = board;
@@ -33,13 +61,25 @@ public class Game implements Serializable {
 
 
 
+    
+    /**
+     * Megadja, hogy a játék mikor volt utoljára elmentve.  
+     *
+     * @return Utolsó mentési idõ (string-ként).
+     */
     public String getLastSaveTime() {
         return this.lastSaved;
     }
 
 
 
-
+    
+    /**
+     * Megadja, hogy melyik játékos birtokolja a megadott színt.  
+     *
+     * @param  color Szín.
+     * @return A megfelelõ színû játékos.
+     */
     public Player whoHasColor(Color color) {
         if (this.p1.getColor().equals(color)) {
             return this.p1;
@@ -51,7 +91,11 @@ public class Game implements Serializable {
 
 
 
-
+    /**
+     * Beállítja, hogy ki nyerte a játékot.  
+     *
+     * @param p A játékos, aki a nyertes lesz.
+     */
     public void setWinner(Player p) {
         this.winner = p;
     }
@@ -59,6 +103,11 @@ public class Game implements Serializable {
 
 
 
+    /**
+     * Megadja, hogy van-e már nyertese a játéknak.  
+     *
+     * @return True, ha van, egyébként false.
+     */
     public boolean hasWinner() {
         if (this.winner != null) {
             return true;
@@ -70,6 +119,12 @@ public class Game implements Serializable {
 
 
 
+    
+    /**
+     * Megadja, hogy melyik játékos nyerte a játékot.  
+     *
+     * @return A nyertes játékos.
+     */
     public Player getWinner() {
         return this.winner;
     }
@@ -101,6 +156,11 @@ public class Game implements Serializable {
 
 
 
+    /**
+     * Megadja, hogy a fekete játékosnak van-e dupla nyitott hármasa vagy négyese.  
+     *
+     * @return True/false.
+     */
     public boolean hasDoubleOpened() {
 
         // horizontal
@@ -192,6 +252,12 @@ public class Game implements Serializable {
 
 
 
+    /**
+     * Megadja, hogy a megadott színnek milyen hosszú a legnagyobb streak-je.  
+     *
+     * @param  color A szín, melyet vizsgálni szeretnénk.
+     * @return Egész szám.
+     */
     public int longestStreak(Color color) {
 
         int maxStreak = 0;
@@ -254,7 +320,9 @@ public class Game implements Serializable {
 
 
 
-
+    /**
+     * Elmenti a játékot.  
+     */
     public void save() {
         String filename = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
         this.lastSaved = filename;

@@ -16,7 +16,9 @@ import renju.classes.*;
 
 
 
-
+/**
+ * A játék fõosztálya.  
+ */
 public class Renju {
 
     private JFrame frame;
@@ -316,7 +318,9 @@ public class Renju {
 
 
 
-
+    /**
+     * Inicializálja a menüt.  
+     */
     public Renju() {
 
         JFrame frame = new JFrame();
@@ -373,6 +377,12 @@ public class Renju {
 
 
 
+    
+    /**
+     * A program belépési pontja.
+     * 
+     * @param args Opcionális argumentumok.
+     */
     public static void main(String[] args) {
         new Renju();
     }
